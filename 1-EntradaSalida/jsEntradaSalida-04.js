@@ -8,7 +8,7 @@ function mostrar()
 
 	nombre = prompt("Ingrese su nombre");
 
-	txtIdNombre.value = dato;
+	txtIdNombre.value = nombre;
 
 }
 
