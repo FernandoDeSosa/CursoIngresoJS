@@ -1,6 +1,15 @@
 function mostrar()
 {
-	//tomo la edad  
-	alert("ok");
+	var edad;
+	
+	edad = txtIdEdad.value; //string no es necesario parseint
+	//Parsear cuando tenemos "===" igualdad estricta
 
-}//FIN DE LA FUNCIÓN
+	if (edad == 15) 
+	{
+
+		alert("La edad es 15");
+		
+	}
+	
+}
