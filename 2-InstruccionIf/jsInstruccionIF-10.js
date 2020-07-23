@@ -4,6 +4,9 @@ function mostrar()
 	var numeroDos;
 	var max;
 	var min;
+	var mensaje;
+
+	mensaje = ''
 
 	max = 52;
 	min = 1;
@@ -16,26 +19,32 @@ function mostrar()
 
 	if(numeroUno % 2 == 0 && numeroDos % 2 == 0)
 	{
-		alert(numeroUno * numeroDos);
+		mensaje = numeroUno * numeroDos;
 	}
 	else
 	{
 		if(!(numeroUno % 2 == 0 && numeroDos % 2 == 0))
 		{
-			alert(numeroUno - numeroDos);
+			mensaje = mensaje + (numeroUno - numeroDos);
 		}
+	
 		
 	}	
 	if(numeroDos % 5 == 0)
 	{
-		alert(Math.pow(numeroDos,3));
+		mensaje = mensaje + (Math.pow(numeroDos,3));
 	}
 	else
 	{
 	    if(numeroUno % 5 == 0)
 	{
-		alert(Math.pow(numeroUno,3));
+		mensaje = mensaje + (Math.pow(numeroUno,3));
 	}
+	if(mensaje = '')
+	{
+		alert("No paso nada");
+	}
+	
 	}
 //a- si lo dos son pares multiplicarlos
 //b-si los dos son iumpares restarlos
