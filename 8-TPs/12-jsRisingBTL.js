@@ -12,8 +12,71 @@ function ComenzarIngreso ()
  	//definicion de variables
  	var edadIngresada;
  	var sexoIngresado;
- 	var estadoCivilIngresado;
+ 	var estadoCivil;
+	var sueldo;
+	var numeroLegajo;
+	var nacionalidad;
+
+	edadIngresada = 0;
+	sexoIngresado = 0;
+	estadoCivil = "1" || "2" || "3" || "4";
 
 
+	while (edadIngresada == 0) 
+	{
+		
+		edadIngresada = parseInt(prompt("Ingrese su edad"));
 
+		while (!(edadIngresada >= 18 && edadIngresada <=90)) 
+		{
+			edadIngresada = parseInt(prompt("Ingrese Una edad valida"));
+		}
+		
+		while (isNaN(edadIngresada)) 		
+		{
+			edadIngresada = parseInt(prompt("Ingrese un numero valido"));
+		}
+	}
+
+	while (sexoIngresado) 
+	{
+		sexoIngresado = prompt("Ingrese su sexo");
+
+		while (sexoIngresado != "f" || sexoIngresado !="m")
+		{
+			sexoIngresado = prompt("Ingrese un sexo valido");
+		}
+	}
+
+	while (estadoCivil) 
+	{
+		estadoCivil = parseInt(prompt("Ingrese su estado civil"));
+		
+		while (estadoCivil != "1" || "2" || "3" || "4")
+		{
+			estadoCivil = parseInt(prompt("Ingrese su estado civil valido"));
+		} 
+		 if (estadoCivil == "1")
+		{
+			estadoCivil = "Soltero";
+		}
+		else if (estadoCivil = "2")
+		{
+			estadoCivil = "Casado";
+		}
+		else if (estadoCivil = "3")
+		{
+			estadoCivil = "Divorsiado";
+		}
+		else 
+		{
+			estado = "Viudo";
+		}
+
+		
+	}
+
+	txtIdEdad.value = edadIngresada;
+	txtIdSexo.value = sexoIngresado;
+	txtIdEstadoCivil.value = estadoCivil;
 }
