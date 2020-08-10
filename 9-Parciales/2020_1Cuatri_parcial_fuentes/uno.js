@@ -1,18 +1,4 @@
-/*Debemos realizar la carga de 5(cinco) productos de prevención de contagio,
-de cada una debo obtener los siguientes datos:
-el tipo (validar "barbijo" , "jabón" o "alcohol") ,
-el precio (validar entre 100 y 300),
-la cantidad de unidades (no puede ser 0 o negativo y no debe superar las 1000 unidades),
-la Marca y el fabricante.
-Se debe Informar al usuario lo siguiente:
-a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
-b) Del tipo con mas unidades, el promedio por compra
-c) Cuántas unidades de jabones hay en total*/ 
-function mostrar()
-{
-
-	//maximos y minimos calcular
-	/**
+/*
 	 * -infinito------------0----------+infinito
 	 * 
 	 * var maximo
@@ -43,118 +29,131 @@ function mostrar()
 	 * 
 	 * 
 	 */
-	var contador;
+
+/*Debemos realizar la carga de 5(cinco) productos de prevención de contagio,
+de cada una debo obtener los siguientes datos:
+el tipo (validar "barbijo" , "jabón" o "alcohol") ,
+el precio (validar entre 100 y 300),
+la cantidad de unidades (no puede ser 0 o negativo y no debe superar las 1000 unidades),
+la Marca y el fabricante.
+Se debe Informar al usuario lo siguiente:
+a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
+b) Del tipo con mas unidades, el promedio por compra
+c) Cuántas unidades de jabones hay en total*/ 
+function mostrar()
+{
+
+	var contador = 0;
 	var tipoProducto;
 	var precio;
 	var unidades;
 	var marca;
 	var fabricante;
-	var contadorDeAlcohol;
-	var precioMinimoAlcohol;
-	var acumuladorFabricanteAlcohol = 0;
-	var acumuladorCantidadesAlcohol = 0;
-	var acumuladorCantidadesBarbijo = 0;
-	var acumuladorCantidadesJabon = 0;
-	var bandera = true;
-	var banderafabricante = true;
-	
+	var alcoholPrecioMasBarato;
+	var alcoholMasBaratoUnidades;
+	var alcoholMasBaratoFabricante;
+	var banderaAlcohol = true;
+	var acumuladorAlcohol = 0;
+	var acumuladorBarbijo = 0;
+	var acumuladorJabon = 0;
+	var contadorAlcohol = 0;
+	var contadorJabon = 0;
+	var contadorBarbijo = 0;
+	var promedio;
 
 
-	contadorDeAlcohol = 0;
-	contador = 0;
 
-	while(contador <5)
+	while(contador < 5)
 	{
-		contador++;
-	
 		do{
-		tipoProducto = prompt("Ingrese un producto");
-		}while(tipoProducto != "barbijo" 
-		&& tipoProducto != "jabon" 
-		&& tipoProducto != "alcohol")
+			tipoProducto = prompt("Ingrese un producto");
+		}while(tipoProducto != "barbijo" && tipoProducto != "jabon" && tipoProducto != "alcohol");
 
 		do{
-		precio = prompt("Ingrese precio");
-		precio = parseInt(precio);
-		}while(precio < 100 || precio >300 || isNaN(precio))
-	
+			precio = prompt("Ingrese precio");
+			precio = parseInt(precio);
+		}while(precio < 100 || precio > 300 || isNaN(precio));
+
 		do{
 			unidades = prompt("Ingrese cantidad de unidades");
 			unidades = parseInt(unidades);
-		}while(unidades < 1 || unidades >1000 || isNaN(unidades))
-		
+		}while(unidades < 0 || unidades > 1000 || isNaN(unidades));
+
 		do{
 			marca = prompt("Ingrese marca");
-		}while(marca == false)
+		}while(marca == false);
 
 		do{
 			fabricante = prompt("Ingrese fabricante");
-		}while(fabricante == false)
+		}while(fabricante == false);
 
 		//a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
 
-		if(tipoProducto == "alcohol" && bandera)
+		if(tipoProducto == "alcohol" && banderaAlcohol == true)
 		{
-			precioMinimoAlcohol = precio;
-			bandera = false;
-		}else if(tipoProducto == "alcohol" && precio < precioMinimoAlcohol)
+			alcoholPrecioMasBarato = precio;
+			alcoholMasBaratoUnidades = unidades;
+			alcoholMasBaratoFabricante = fabricante
+			banderaAlcohol = false;
+
+		} else if(precio < alcoholPrecioMasBarato)
 		{
-			precioMinimoAlcohol = precio;
-		}
-		if(tipoProducto == "alcohol")
-		{
-			acumuladorFabricanteAlcohol+= fabricante;
-			
+			alcoholPrecioMasBarato = precio;
+			alcoholMasBaratoUnidades = unidades;
+			alcoholMasBaratoFabricante = fabricante;
 		}
 
 		//b) Del tipo con mas unidades, el promedio por compra
 
 		switch(tipoProducto)
-		{
-			case("alcohol"):
-			acumuladorCantidadesAlcohol+= unidades;
-			
-			break;
+			{
+				case "alcohol":
+					acumuladorAlcohol+= unidades;
+					contadorAlcohol++;
+					break;
 
-			case("barbijo"):
-			acumuladorCantidadesBarbijo+= unidades;
-			
-			break;
+				case "barbijo":
+					acumuladorBarbijo+= unidades;
+					contadorBarbijo++;
+					break;
 
-			case("jabon"):
-			acumuladorCantidadesJabon+= unidades;
-			
-			break;
-		}	
+				case "jabon":
+					acumuladorJabon+= unidades;
+					contadorJabon++;
+					break;
+			}
+		
 
-	
-	
-	
-	
-	}//end while
 
-	console.log("precio minimo alcohol " + precioMinimoAlcohol);
-	console.log("cantidad de alcohol " + acumuladorCantidadesAlcohol);
-	console.log("Los fabricantes del alcohol son " + acumuladorFabricanteAlcohol);
 
-	if(acumuladorCantidadesAlcohol > acumuladorCantidadesBarbijo && acumuladorCantidadesAlcohol > acumuladorCantidadesJabon)
-	{
-		console.log("alcohol tiene mas unidades " + acumuladorCantidadesAlcohol);
-	}else if(acumuladorCantidadesBarbijo > acumuladorCantidadesAlcohol && acumuladorCantidadesBarbijo > acumuladorCantidadesJabon)
-	{
-		console.log("barbijo tiene mas unidades " + acumuladorCantidadesBarbijo)
-	}else if(acumuladorCantidadesJabon > acumuladorCantidadesAlcohol && acumuladorCantidadesJabon > acumuladorCantidadesBarbijo)
-	{
-		console.log("jabon tiene mas unidades " + acumuladorCantidadesBarbijo);
-	}else
-	{
-		console.log("Tienen la misma cantidad o es 0");//acumulador y contador de cantidades de veces que comporo, despues dividirslo
+
+
+		contador++;
 	}
 
-	//c) Cuántas unidades de jabones hay en total
-
-	console.log("Las unidades de jabones son " + acumuladorCantidadesJabon);
-
-
+	//a
 	
+		if(tipoProducto == "alcohol"){
+		console.log("La cantidad de unidades del alcohol mas barato es " + alcoholMasBaratoUnidades + " y el fabricante es " + alcoholMasBaratoFabricante);
+		}
+	//b
+
+	if(acumuladorAlcohol > acumuladorBarbijo && acumuladorAlcohol > acumuladorJabon)
+	{
+		promedio = acumuladorAlcohol / contadorAlcohol;
+		console.log("El promedio es " + promedio)
+	}else if(acumuladorBarbijo > acumuladorAlcohol && acumuladorBarbijo > acumuladorJabon)
+	{
+		promedio = acumuladorBarbijo / contadorBarbijo;
+		console.log("El promedio es " + promedio)
+	}else if(acumuladorJabon > acumuladorBarbijo && acumuladorJabon > acumuladorAlcohol)
+	{
+		promedio = acumuladorJabon / contadorJabon;
+		console.log("El promedio es " + promedio)
+	}
+
+	//c) Cuántas unidades de jabones hay en total*/ 
+
+	console.log("la cantidad de unidades de jabones son " + acumuladorJabon);
+
 }
