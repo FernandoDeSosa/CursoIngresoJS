@@ -13,26 +13,17 @@ function mostrar()
 	var sexo;
 	var estadoCivil;
 	var temperatura;
-	var nombreTemperaturaMayor;
-	var temperaturaMayor;
-	var banderaTemperaturaMayor = true;
-	var contadorMayoresViudos = 0;
-	var contadorHombresSolterosViudos = 0;
-	var contadorTerceraEdadConFiebre = 0;
-	var contadorHombresSolteros = 0;
-	var acumuladorHombresSolteros = 0;
-	var promedio;
 
-	while(respuesta)
-	{
+	while(respuesta){
+
 		do{
 			nombre = prompt("Ingrese su nombre");
-		}while(!isNaN(nombre));
+		}while(!(isNaN(nombre)));
 
 		do{
 			edad = prompt("Ingrese su edad");
 			edad = parseInt(edad);
-		}while(edad < 0 || isNaN(edad));
+		}while(isNaN(edad));
 
 		do{
 			sexo = prompt("Ingrese su sexo");
@@ -41,61 +32,57 @@ function mostrar()
 		do{
 			estadoCivil = prompt("Ingrese su estado civil");
 		}while(estadoCivil != "soltero" && estadoCivil != "casado" && estadoCivil != "viudo");
-		
+
 		do{
 			temperatura = prompt("Ingrese su temperatura");
 			temperatura = parseInt(temperatura);
 		}while(isNaN(temperatura));
 
-		//a) El nombre de la persona con mas temperatura.
+				//a) El nombre de la persona con mas temperatura.
 
-		if(banderaTemperaturaMayor)
-		{
-			nombreTemperaturaMayor = nombre;
-			temperaturaMayor = temperatura;
-			banderaTemperaturaMayor = false;
-		}else if(temperatura > temperaturaMayor)
-		{
-			temperaturaMayor = temperatura;
-			nombreTemperaturaMayor = nombre;
-		}
-
-		//b) Cuantos mayores de edad estan viudos
-
-		if(edad > 17 && estadoCivil == "viudo")
-		{
-			contadorMayoresViudos++;
-		}
-
-		//c) La cantidad de hombres que hay solteros o viudos.
-
-		if(sexo == "m" && estadoCivil == "soltero" || estadoCivil == "viudo")
-		{
-			contadorHombresSolterosViudos++;
-		}
-
-		//d) cuantas personas de la tercera edad( mas de 60 años) , tienen mas de 38 de temperatura
-
-		if(edad > 60 && temperatura > 38)
-		{
-			contadorTerceraEdadConFiebre++;
-		}
+				if(banderaTemperaturaMayor)
+				{
+					nombreTemperaturaMayor = nombre;
+					temperaturaMayor = temperatura;
+					banderaTemperaturaMayor = false;
+				}else if(temperatura > temperaturaMayor)
+				{
+					temperaturaMayor = temperatura;
+					nombreTemperaturaMayor = nombre;
+				}
 		
-		//e) El promedio de edad entre los hombres solteros
+				//b) Cuantos mayores de edad estan viudos
+		
+				if(edad > 17 && estadoCivil == "viudo")
+				{
+					contadorMayoresViudos++;
+				}
+		
+				//c) La cantidad de hombres que hay solteros o viudos.
+		
+				if(sexo == "m" && estadoCivil == "soltero" || estadoCivil == "viudo")
+				{
+					contadorHombresSolterosViudos++;
+				}
+		
+				//d) cuantas personas de la tercera edad( mas de 60 años) , tienen mas de 38 de temperatura
+		
+				if(edad > 60 && temperatura > 38)
+				{
+					contadorTerceraEdadConFiebre++;
+				}
+				
+				//e) El promedio de edad entre los hombres solteros
+		
+				if(sexo == "m" && estadoCivil == "soltero")
+				{
+					acumuladorHombresSolteros+= edad;
+					contadorHombresSolteros++;
+				}
+		
+				promedio = acumuladorHombresSolteros / contadorHombresSolteros;
 
-		if(sexo == "m" && estadoCivil == "soltero")
-		{
-			acumuladorHombresSolteros+= edad;
-			contadorHombresSolteros++;
-		}
-
-		promedio = acumuladorHombresSolteros / contadorHombresSolteros;
-
-
-
-
-
-		respuesta = confirm("Desea ingresar otro?");
+		respuesta = confirm("Desea continuar?");
 	}
 
 	//a
@@ -108,10 +95,6 @@ function mostrar()
 	console.log("Las personas de la tercera edad con fiebre son " + contadorTerceraEdadConFiebre);
 	//e
 	console.log("el promedio de edad entre hombres solteros es " + promedio);
-
-
-
-
 
 
 }
